@@ -1,0 +1,55 @@
+{
+  "name": "electron-react",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "./",
+  "author": "Urkallinger",
+  "description": "Simple basic framework for an electron app that uses react.",
+  "main": "public/electron.js",
+  "dependencies": {
+    "electron-is-dev": "^1.0.1",
+    "react": "^16.5.2",
+    "react-dev-utils": "^6.0.5",
+    "react-dom": "^16.5.2"
+  },
+  "devDependencies": {
+    "concurrently": "^4.0.1",
+    "cross-env": "^5.2.0",
+    "electron": "^3.0.5",
+    "electron-builder": "^20.28.4",
+    "electron-devtools-installer": "^2.2.4",
+    "electron-prebuilt": "^1.4.13",
+    "react-scripts": "^2.0.5",
+    "version-bump-prompt": "^4.2.1",
+    "wait-on": "^3.1.0"
+  },
+  "scripts": {
+    "dev": "yarn react-scripts start",
+    "build": "react-scripts build",
+    "start": "concurrently \"cross-env BROWSER=none yarn react-scripts start\" \"wait-on http://localhost:3000 && electron .\"",
+    "pack": "electron-builder --dir",
+    "dist": "npx build --x64 --win --c.extraMetadata.main=build/electron.js"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "build": {
+    "appId": "de.urkallinger",
+    "productName": "electron-react",
+    "compression": "normal",
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    }
+  }
+}
