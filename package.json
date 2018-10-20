@@ -1,10 +1,10 @@
 {
-  "name": "electron-react",
+  "name": "simple-admin",
   "version": "0.1.0",
   "private": true,
   "homepage": "./",
   "author": "Urkallinger",
-  "description": "Simple basic framework for an electron app that uses react.",
+  "description": "Simple andministration.",
   "main": "public/electron.js",
   "dependencies": {
     "@material-ui/core": "^3.2.2",
@@ -44,7 +44,7 @@
   ],
   "build": {
     "appId": "de.urkallinger",
-    "productName": "electron-react",
+    "productName": "Simple Admin",
     "compression": "normal",
     "directories": {
       "buildResources": "build",
