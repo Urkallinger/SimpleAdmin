@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import {Link} from 'react-router-dom';
 import {Typography} from '@material-ui/core';
+import MenuBar from '../components/MenuBar';
 
 const styles = {};
 
@@ -14,12 +15,12 @@ class HomePage extends Component {
     render() {
         return (
             <div>
-                <Typography variant="h3">Home</Typography>
+                <MenuBar>Home</MenuBar>
                 <div>
-                    <Link to="/">App</Link>
+                    <Typography variant="h6"><Link to="/">App</Link></Typography>
                 </div>
                 <div>
-                    <Link to="/details">details</Link>
+                    <Typography variant="h6"><Link to="/details">details</Link></Typography>
                 </div>
             </div>
         );
