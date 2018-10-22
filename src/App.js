@@ -1,26 +1,37 @@
-import {withStyles, Typography, MuiThemeProvider} from '@material-ui/core';
+import {Typography, withStyles} from '@material-ui/core';
+import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {SimpleAdminTheme} from './Theme';
+import MenuBar from './components/MenuBar';
 
 const styles = {};
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
-            <MuiThemeProvider theme={SimpleAdminTheme}>
+            <div>
+                <MenuBar>App</MenuBar>
                 <div>
-                    <Typography variant="h3">App</Typography>
-                    <div>
+                    <Typography variant="h6">
                         <Link to="/home">Home</Link>
-                    </div>
-                    <div>
-                        <Link to="/details">Details</Link>
-                    </div>
+                    </Typography>
                 </div>
-            </MuiThemeProvider>
+                <div>
+                    <Typography variant="h6">
+                        <Link to="/details">Details</Link>
+                    </Typography>
+                </div>
+            </div>
         );
     }
 }
+
+App.propTypes = {
+    classes: PropTypes.object
+};
 
 export default withStyles(styles)(App);
