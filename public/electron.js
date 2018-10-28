@@ -19,7 +19,9 @@ let createWindow = () => {
         width: 1280
     });
 
-    mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
+    mainWindow.loadURL(isDev
+        ? 'http://localhost:3000'
+        : `file://${path.join(__dirname, '../build/index.html')}`);
 
     if (isDev) {
         const {
@@ -91,23 +93,6 @@ let generateMenu = () => {
         {
             role: 'window',
             submenu: [{role: 'minimize'}, {role: 'close'}]
-        },
-        {
-            role: 'help',
-            submenu: [
-                {
-                    click() {
-                        require('electron').shell.openExternal('https://getstream.io/winds');
-                    },
-                    label: 'Learn More'
-                },
-                {
-                    click() {
-                        require('electron').shell.openExternal('https://github.com/GetStream/Winds/issues');
-                    },
-                    label: 'File Issue on GitHub'
-                }
-            ]
         }
     ];
 
