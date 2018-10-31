@@ -1,5 +1,6 @@
 import {AppBar, IconButton, Toolbar, Typography, withStyles} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import MoreIcon from '@material-ui/icons/MoreVert';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
@@ -14,6 +15,9 @@ const styles = {
     menuButton: {
         marginLeft: -12,
         marginRight: 20
+    },
+    moreButton: {
+        marginRight: -15
     }
 };
 
@@ -34,6 +38,13 @@ class MenuBar extends Component {
                     <Typography variant="h6" color="inherit" className={classes.grow}>
                         {this.props.title}
                     </Typography>
+                    <IconButton
+                        className={classes.moreButton}
+                        color="inherit"
+                        aria-label="more options"
+                    >
+                        <MoreIcon />
+                    </IconButton>
                 </Toolbar>
             </AppBar>
         );
