@@ -1,34 +1,37 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
-import {Link} from 'react-router-dom';
-import {Typography} from '@material-ui/core';
-import MenuBar from '../components/MenuBar';
+import {connect} from 'react-redux';
+import {dummyAction} from '../actions/Actions';
 
-const styles = {};
+const mapStateToProps = state => {
+    return {dummies: state.dummies};
+};
 
-class HomePage extends Component {
-    constructor(props) {
-        super(props);
-    }
+const mapDispatchToProps = dispatch => {
+    return {
+        dummyAction: dummy => dispatch(dummyAction(dummy))
+    };
+};
 
-    render() {
+class ConnectedHomePage extends Component {
+    onClick = () => {
+        this.props.dummyAction('superdummy');
+    };
+
+    render = () => {
         return (
             <div>
-                <MenuBar>Home</MenuBar>
+                <div>Home</div>
+                <button onClick={this.onClick}>press me</button>
                 <div>
-                    <Typography variant="h6"><Link to="/">App</Link></Typography>
-                </div>
-                <div>
-                    <Typography variant="h6"><Link to="/details">details</Link></Typography>
+                    {this.props.dummies.map(dummy => (
+                        <div key={dummy}>{dummy}</div>
+                    ))}
                 </div>
             </div>
         );
-    }
+    };
 }
 
-HomePage.propTypes = {
-    classes: PropTypes.object
-};
-
-export default withStyles(styles)(HomePage);
+const HomePage = connect(mapStateToProps,
+                         mapDispatchToProps)(ConnectedHomePage);
+export default HomePage;
