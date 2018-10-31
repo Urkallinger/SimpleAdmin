@@ -1,9 +1,18 @@
-import {AppBar, IconButton, Toolbar, Typography, withStyles} from '@material-ui/core';
+import {
+    AppBar,
+    IconButton,
+    Toolbar,
+    Typography,
+    withStyles,
+    Menu,
+    MenuItem
+} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {isUndefinedOrEmpty} from '../utils/JsUtils';
 
 const styles = {
     root: {
@@ -22,10 +31,74 @@ const styles = {
 };
 
 const mapStateToProps = state => {
-    return {title: state.title};
+    return {title: state.title, menuItems: state.menuItems};
 };
 
 class MenuBar extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {anchorEl: null};
+    }
+
+    onOpenOptionsMenu = event => {
+        this.setState({anchorEl: event.currentTarget});
+    };
+
+    onCloseOpitonsMenu = () => {
+        this.setState({anchorEl: null});
+    };
+
+    getOptionsMenu = () => {
+        const {menuItems} = this.props;
+
+        if (!isUndefinedOrEmpty(menuItems)) {
+            const {classes} = this.props;
+            const {anchorEl} = this.state;
+            const open = Boolean(anchorEl);
+
+            return (
+                <React.Fragment>
+                    <IconButton
+                        className={classes.moreButton}
+                        color="inherit"
+                        aria-label="more options"
+                        onClick={this.onOpenOptionsMenu}
+                    >
+                        <MoreIcon />
+                    </IconButton>
+                    <Menu
+                        id="menu-appbar"
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right'
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right'
+                        }}
+                        open={open}
+                        onClose={this.onCloseOpitonsMenu}
+                    >
+                        {menuItems.map((item, idx) => (
+                            <MenuItem
+                                key={idx}
+                                onClick={() => {
+                                    item.onClick();
+                                    this.onCloseOpitonsMenu();
+                                }}
+                            >
+                                {item.label}
+                            </MenuItem>
+                        ))}
+                    </Menu>
+                </React.Fragment>
+            );
+        } else {
+            return null;
+        }
+    };
+
     render() {
         const {classes} = this.props;
 
@@ -38,13 +111,7 @@ class MenuBar extends Component {
                     <Typography variant="h6" color="inherit" className={classes.grow}>
                         {this.props.title}
                     </Typography>
-                    <IconButton
-                        className={classes.moreButton}
-                        color="inherit"
-                        aria-label="more options"
-                    >
-                        <MoreIcon />
-                    </IconButton>
+                    {this.getOptionsMenu()}
                 </Toolbar>
             </AppBar>
         );
@@ -53,6 +120,7 @@ class MenuBar extends Component {
 
 MenuBar.propTypes = {
     title: PropTypes.string,
+    menuItems: PropTypes.array,
     classes: PropTypes.object
 };
 
