@@ -5,13 +5,12 @@ import React, {Component} from 'react';
 import {Provider} from 'react-redux';
 import {applyMiddleware, compose, createStore} from 'redux';
 import rootReducer from './reducers/Reducers';
-import Routes from './Routes';
 import {SimpleAdminTheme} from './Theme';
+import App from './App';
 
 const history = createHashHistory();
 
 const store = createStore(connectRouter(history)(rootReducer),
-                          {dummies: []},
                           compose(applyMiddleware(routerMiddleware(history))));
 window.store = store;
 
@@ -21,7 +20,7 @@ export default class Root extends Component {
             <Provider store={store}>
                 <ConnectedRouter history={history}>
                     <MuiThemeProvider theme={SimpleAdminTheme}>
-                        <Routes />
+                        <App />
                     </MuiThemeProvider>
                 </ConnectedRouter>
             </Provider>

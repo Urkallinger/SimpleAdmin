@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {dummyAction} from '../actions/Actions';
-import MenuBar from '../components/MenuBar';
+import {dummyAction, setTitle} from '../actions/Actions';
 import {Button, withStyles} from '@material-ui/core';
 import FaceIcon from '@material-ui/icons/Face';
 import {push} from 'connected-react-router';
@@ -30,27 +29,31 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        dummyAction: dummy => dispatch(dummyAction(dummy))
+        dummyAction: dummy => dispatch(dummyAction(dummy)),
+        setTitle: title => dispatch(setTitle(title))
     };
 };
 
 class HomePage extends Component {
+    componentDidMount = () => {
+        this.props.setTitle('Home');
+    };
+
     onClick = () => {
         this.props.dummyAction('superdummy');
     };
 
-    goToApp = () => {
-        window.store.dispatch(push('/'));
+    goToDetails = () => {
+        window.store.dispatch(push('/details'));
     };
 
     render = () => {
         const {classes} = this.props;
         return (
             <div>
-                <MenuBar>Details</MenuBar>
                 <div className={classes.content}>
-                    <Button color="secondary" variant="contained" onClick={this.goToApp}>
-                        App
+                    <Button color="secondary" variant="contained" onClick={this.goToDetails}>
+                        Details
                     </Button>
                     <div className={classes.output}>
                         {this.props.dummies.map((dummy, idx) => (
@@ -75,6 +78,7 @@ class HomePage extends Component {
 HomePage.propTypes = {
     dummies: PropTypes.array,
     dummyAction: PropTypes.func,
+    setTitle: PropTypes.func,
 
     classes: PropTypes.object.isRequired // material-ui
 };

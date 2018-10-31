@@ -2,6 +2,7 @@ import {AppBar, IconButton, Toolbar, Typography, withStyles} from '@material-ui/
 import MenuIcon from '@material-ui/icons/Menu';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 const styles = {
     root: {
@@ -16,6 +17,10 @@ const styles = {
     }
 };
 
+const mapStateToProps = state => {
+    return {title: state.title};
+};
+
 class MenuBar extends Component {
     render() {
         const {classes} = this.props;
@@ -27,7 +32,7 @@ class MenuBar extends Component {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" color="inherit" className={classes.grow}>
-                        {this.props.children}
+                        {this.props.title}
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -36,8 +41,8 @@ class MenuBar extends Component {
 }
 
 MenuBar.propTypes = {
-    children: PropTypes.string,
+    title: PropTypes.string,
     classes: PropTypes.object
 };
 
-export default withStyles(styles)(MenuBar);
+export default connect(mapStateToProps)(withStyles(styles)(MenuBar));
