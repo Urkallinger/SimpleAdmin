@@ -5,11 +5,7 @@ import {push} from 'connected-react-router';
 import {setTitle} from '../actions/Actions';
 import {connect} from 'react-redux';
 
-const styles = () => ({
-    content: {
-        padding: 10
-    }
-});
+const styles = () => ({});
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -27,14 +23,11 @@ class DetailsPage extends Component {
     };
 
     render = () => {
-        const {classes} = this.props;
         return (
             <div>
-                <div className={classes.content}>
-                    <Button color="secondary" variant="contained" onClick={this.goToDetails}>
-                        Home
-                    </Button>
-                </div>
+                <Button color="secondary" variant="contained" onClick={this.goToDetails}>
+                    Home
+                </Button>
             </div>
         );
     };

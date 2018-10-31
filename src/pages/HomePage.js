@@ -7,9 +7,6 @@ import FaceIcon from '@material-ui/icons/Face';
 import {push} from 'connected-react-router';
 
 const styles = () => ({
-    content: {
-        padding: 10
-    },
     faceButton: {
         position: 'absolute',
         bottom: 10,
@@ -51,15 +48,13 @@ class HomePage extends Component {
         const {classes} = this.props;
         return (
             <div>
-                <div className={classes.content}>
-                    <Button color="secondary" variant="contained" onClick={this.goToDetails}>
-                        Details
-                    </Button>
-                    <div className={classes.output}>
-                        {this.props.dummies.map((dummy, idx) => (
-                            <div key={idx}>{dummy}</div>
-                        ))}
-                    </div>
+                <Button color="secondary" variant="contained" onClick={this.goToDetails}>
+                    Details
+                </Button>
+                <div className={classes.output}>
+                    {this.props.dummies.map((dummy, idx) => (
+                        <div key={idx}>{dummy}</div>
+                    ))}
                 </div>
 
                 <Button
