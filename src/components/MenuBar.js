@@ -17,10 +17,6 @@ const styles = {
 };
 
 class MenuBar extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const {classes} = this.props;
 
@@ -40,7 +36,7 @@ class MenuBar extends Component {
 }
 
 MenuBar.propTypes = {
-    children: PropTypes.object,
+    children: PropTypes.string,
     classes: PropTypes.object
 };
 

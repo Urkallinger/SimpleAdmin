@@ -1,29 +1,29 @@
-import {Typography, withStyles} from '@material-ui/core';
+import {withStyles, Button} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import MenuBar from './components/MenuBar';
+import {push} from 'connected-react-router';
 
-const styles = {};
+const styles = {
+    content: {
+        padding: 10
+    }
+};
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-    }
+    goToHomePage = () => {
+        window.store.dispatch(push('/home'));
+    };
 
     render() {
+        const {classes} = this.props;
         return (
             <div>
                 <MenuBar>App</MenuBar>
-                <div>
-                    <Typography variant="h6">
-                        <Link to="/home">Home</Link>
-                    </Typography>
-                </div>
-                <div>
-                    <Typography variant="h6">
-                        <Link to="/details">Details</Link>
-                    </Typography>
+                <div className={classes.content}>
+                    <Button color="secondary" variant="contained" onClick={this.goToHomePage}>
+                        HomePage
+                    </Button>
                 </div>
             </div>
         );

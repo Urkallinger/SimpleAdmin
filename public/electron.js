@@ -12,14 +12,14 @@ let createWindow = () => {
         show: false,
         titleBarStyle: 'hidden',
         webPreferences: {
-            nodeIntegration: false,
-            preload: __dirname + '/preload.js'
+            nodeIntegration: false
+            // preload: __dirname + '/preload.js'
         },
         height: 860,
         width: 1280
     });
 
-    mainWindow.loadURL(isDev
+    mainWindow.loadURL(isDev 
         ? 'http://localhost:3000'
         : `file://${path.join(__dirname, '../build/index.html')}`);
 

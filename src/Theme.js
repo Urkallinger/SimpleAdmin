@@ -5,4 +5,7 @@ export const SimpleAdminTheme = createMuiTheme({
     palette: {
         primary: green
     },
+    typography: {
+        useNextVariants: true
+    }
 });
