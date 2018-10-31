@@ -40,57 +40,52 @@ class MenuBar extends Component {
         this.state = {anchorEl: null};
     }
 
-    onOpenOptionsMenu = event => {
+    onOpenOptMenu = event => {
         this.setState({anchorEl: event.currentTarget});
     };
 
-    onCloseOpitonsMenu = () => {
+    onCloseOptMenu = () => {
         this.setState({anchorEl: null});
     };
 
-    getOptionsMenu = () => {
+    createMenuItem = data => {
+        const onClick = () => {
+            data.onClick();
+            this.onCloseOptMenu();
+        };
+        return (
+            <MenuItem key={data.label} onClick={onClick}>
+                {data.label}
+            </MenuItem>
+        );
+    };
+
+    getOptMenu = () => {
         const {menuItems} = this.props;
 
         if (!isUndefinedOrEmpty(menuItems)) {
             const {classes} = this.props;
             const {anchorEl} = this.state;
             const open = Boolean(anchorEl);
+            const origin = {vertical: 'top', horizontal: 'right'};
 
             return (
                 <React.Fragment>
                     <IconButton
                         className={classes.moreButton}
                         color="inherit"
-                        aria-label="more options"
-                        onClick={this.onOpenOptionsMenu}
+                        onClick={this.onOpenOptMenu}
                     >
                         <MoreIcon />
                     </IconButton>
                     <Menu
-                        id="menu-appbar"
                         anchorEl={anchorEl}
-                        anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right'
-                        }}
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right'
-                        }}
+                        anchorOrigin={origin}
+                        transformOrigin={origin}
                         open={open}
-                        onClose={this.onCloseOpitonsMenu}
+                        onClose={this.onCloseOptMenu}
                     >
-                        {menuItems.map((item, idx) => (
-                            <MenuItem
-                                key={idx}
-                                onClick={() => {
-                                    item.onClick();
-                                    this.onCloseOpitonsMenu();
-                                }}
-                            >
-                                {item.label}
-                            </MenuItem>
-                        ))}
+                        {menuItems.map(item => this.createMenuItem(item))}
                     </Menu>
                 </React.Fragment>
             );
@@ -105,13 +100,13 @@ class MenuBar extends Component {
         return (
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                    <IconButton className={classes.menuButton} color="inherit">
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" color="inherit" className={classes.grow}>
                         {this.props.title}
                     </Typography>
-                    {this.getOptionsMenu()}
+                    {this.getOptMenu()}
                 </Toolbar>
             </AppBar>
         );
