@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {dummyAction, setTitle, setMenuItems, clearDummies} from '../actions/Actions';
 import {Button, withStyles, Typography} from '@material-ui/core';
 import FaceIcon from '@material-ui/icons/Face';
-import {push} from 'connected-react-router';
 
 const styles = () => ({
   faceButton: {

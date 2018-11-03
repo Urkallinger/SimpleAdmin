@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Button, withStyles} from '@material-ui/core';
-import {push} from 'connected-react-router';
+import {withStyles} from '@material-ui/core';
 import {setTitle} from '../actions/Actions';
 import {connect} from 'react-redux';
 
