@@ -52,17 +52,10 @@ class HomePage extends Component {
     this.props.dummyAction('superdummy');
   };
 
-  goToDetails = () => {
-    window.store.dispatch(push('/details'));
-  };
-
   render = () => {
     const {classes} = this.props;
     return (
       <div>
-        <Button color="secondary" variant="contained" onClick={this.goToDetails}>
-          Details
-        </Button>
         <div className={classes.output}>
           <Typography>
             {this.props.dummies.map((dmy, i) => (

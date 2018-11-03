@@ -6,11 +6,11 @@ import {
   withStyles,
   Menu,
   MenuItem,
-  ListItemIcon,
   ListItemText,
   SwipeableDrawer,
   List,
-  ListItem
+  ListItem,
+  ListItemIcon
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import MoreIcon from '@material-ui/icons/MoreVert';
@@ -18,8 +18,8 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {isUndefinedOrEmpty} from '../utils/JsUtils';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import {Routes} from '../Routes';
+import {push} from 'connected-react-router';
 
 const styles = {
   root: {
@@ -34,6 +34,9 @@ const styles = {
   },
   moreButton: {
     marginRight: -15
+  },
+  list: {
+    width: 250
   }
 };
 
@@ -111,6 +114,12 @@ class MenuBar extends Component {
     }
   };
 
+  goTo = path => {
+    return () => {
+      window.store.dispatch(push(path));
+    };
+  };
+
   getNavMenu = () => {
     const {classes} = this.props;
     const {showNavMenu} = this.state;
@@ -129,10 +138,10 @@ class MenuBar extends Component {
           >
             <div className={classes.list}>
               <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                  <ListItem button key={text}>
-                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                    <ListItemText primary={text} />
+                {Routes.map(route => (
+                  <ListItem button key={route.label} onClick={this.goTo(route.path)}>
+                    <ListItemIcon>{route.icon}</ListItemIcon>
+                    <ListItemText primary={route.label} />
                   </ListItem>
                 ))}
               </List>
