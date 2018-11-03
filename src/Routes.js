@@ -7,14 +7,14 @@ import HomeIcon from '@material-ui/icons/Home';
 import LoupeIcon from '@material-ui/icons/Loupe';
 
 export const Routes = [
-  new RouteData('Details', DetailsPage, '/details', <LoupeIcon />),
-  new RouteData('Home', HomePage, '/', <HomeIcon />)
+  new RouteData('Home', HomePage, '/', <HomeIcon />),
+  new RouteData('Details', DetailsPage, '/details', <LoupeIcon />)
 ];
 
 const Routing = () => (
   <Switch>
     {Routes.map(route => (
-      <Route path={route.path} component={route.component} key={route.path} />
+      <Route exact path={route.path} component={route.component} key={route.path} />
     ))}
   </Switch>
 );
