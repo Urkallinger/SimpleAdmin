@@ -141,7 +141,10 @@ class MenuBar extends Component {
                 {Routes.map(route => (
                   <ListItem button key={route.label} onClick={this.goTo(route.path)}>
                     <ListItemIcon>{route.icon}</ListItemIcon>
-                    <ListItemText primary={route.label} />
+                    <ListItemText
+                      primary={<Typography variant='h6'>{route.label}</Typography>}
+                      disableTypography={true}
+                    />
                   </ListItem>
                 ))}
               </List>
