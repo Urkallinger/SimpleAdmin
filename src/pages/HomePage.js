@@ -7,7 +7,7 @@ import FaceIcon from '@material-ui/icons/Face';
 
 const styles = () => ({
   faceButton: {
-    position: 'absolute',
+    position: 'fixed',
     bottom: 10,
     right: 10
   },
