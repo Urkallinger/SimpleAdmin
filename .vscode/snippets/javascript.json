@@ -1,0 +1,40 @@
+{
+    "New React Component": {
+      "prefix": "new",
+      "body": [
+        "import React, {Component} from 'react';",
+        "import PropTypes from 'prop-types';",
+        "import {connect} from 'react-redux';",
+        "import {withStyles} from '@material-ui/core';",
+        "",
+        "const styles = () => ({});",
+        "",
+        "const mapStateToProps = state => {",
+        "  return {};",
+        "};",
+        "",
+        "const mapDispatchToProps = dispatch => {",
+        "  return {};",
+        "};",
+        "",
+        "class $TM_FILENAME_BASE extends Component {",
+        "  constructor(props) {",
+        "    super(props);",
+        "    this.state = {};",
+        "  }",
+        "",
+        "  render = () => {",
+        "    return <React.Fragment>$1</React.Fragment>;",
+        "  }",
+        "}",
+        "",
+        "$TM_FILENAME_BASE.propTypes = {",
+        "  classes: PropTypes.object.isRequired // material-ui",
+        "};",
+        "",
+        "export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)($TM_FILENAME_BASE));"
+      ],
+      "description": "Creates a new empty react component class."
+    }
+  }
+  
