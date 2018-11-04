@@ -24,7 +24,7 @@
         "  }",
         "",
         "  render = () => {",
-        "    return <React.Fragment>$1</React.Fragment>;",
+        "    return <div>$1</div>;",
         "  }",
         "}",
         "",
