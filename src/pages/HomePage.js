@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {dummyAction, setTitle, setMenuItems, clearDummies} from '../actions/Actions';
-import {Button, withStyles, Typography} from '@material-ui/core';
+import {Button, withStyles} from '@material-ui/core';
 import FaceIcon from '@material-ui/icons/Face';
+import List from '../components/List';
 
 const styles = () => ({
   faceButton: {
@@ -55,14 +56,7 @@ class HomePage extends Component {
     const {classes} = this.props;
     return (
       <div>
-        <div className={classes.output}>
-          <Typography>
-            {this.props.dummies.map((dmy, i) => (
-              <div key={i}>{`${i}: ${dmy}`}</div>
-            ))}
-          </Typography>
-        </div>
-
+        <List />
         <Button onClick={this.onClick} variant="fab" color="primary" className={classes.faceButton}>
           <FaceIcon />
         </Button>
