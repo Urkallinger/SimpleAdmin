@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "eslint auto fix",
+      "label": "eslint auto fix all",
       "type": "shell",
       "options": {
         "cwd": "${workspaceFolder}"
