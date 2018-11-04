@@ -37,6 +37,9 @@ const styles = {
   },
   list: {
     width: 250
+  },
+  navHeader: {
+    height: 160
   }
 };
 
@@ -130,19 +133,21 @@ class MenuBar extends Component {
           onClose={this.onCloseNavMenu}
           onOpen={this.onOpenNavMenu}
         >
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.onCloseNavMenu}
-            onKeyDown={this.onCloseNavMenu}
-          >
+          <div onClick={this.onCloseNavMenu} onKeyDown={this.onCloseNavMenu}>
+            <div className={classes.navHeader}>
+              <img
+                // style={{width: 250}}
+                src={require('../resources/kalling-250x167.jpg')}
+                alt="Kalling"
+              />
+            </div>
             <div className={classes.list}>
               <List>
                 {Routes.map(route => (
                   <ListItem button key={route.label} onClick={this.goTo(route.path)}>
                     <ListItemIcon>{route.icon}</ListItemIcon>
                     <ListItemText
-                      primary={<Typography variant='h6'>{route.label}</Typography>}
+                      primary={<Typography variant="h6">{route.label}</Typography>}
                       disableTypography={true}
                     />
                   </ListItem>
