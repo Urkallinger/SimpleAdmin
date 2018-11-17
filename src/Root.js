@@ -3,19 +3,26 @@ import {ConnectedRouter, connectRouter, routerMiddleware} from 'connected-react-
 import {createBrowserHistory} from 'history';
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
-import {applyMiddleware, compose, createStore} from 'redux';
+import {applyMiddleware, compose, createStore, combineReducers} from 'redux';
 import rootReducer from './reducers/Reducers';
 import {SimpleAdminTheme} from './Theme';
 import App from './App';
 
 const history = createBrowserHistory();
 
-const store = createStore(connectRouter(history)(rootReducer),
+export const createReducers = history => {
+  return combineReducers({
+    root: rootReducer,
+    router: connectRouter(history)
+  });
+};
+
+const store = createStore(createReducers(history),
                           compose(applyMiddleware(routerMiddleware(history))));
 window.store = store;
 
 export default class Root extends Component {
-  render() {
+  render = () => {
     return (
       <Provider store={store}>
         <ConnectedRouter history={history}>
@@ -25,5 +32,5 @@ export default class Root extends Component {
         </ConnectedRouter>
       </Provider>
     );
-  }
+  };
 }

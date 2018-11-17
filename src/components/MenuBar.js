@@ -44,7 +44,7 @@ const styles = {
 };
 
 const mapStateToProps = state => {
-  return {title: state.title, menuItems: state.menuItems};
+  return {title: state.root.title, menuItems: state.root.menuItems};
 };
 
 class MenuBar extends Component {

@@ -20,8 +20,8 @@ const styles = () => ({
   }
 });
 
-const mapStateToProps = state => {
-  return {dummies: state.dummies};
+const mapStateToProps = () => {
+  return {};
 };
 
 const mapDispatchToProps = dispatch => {

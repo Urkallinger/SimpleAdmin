@@ -3,7 +3,7 @@ import {DUMMY_ACTION, SET_TITLE, SET_MENU_ITEMS, CLEAR_DUMMIES} from '../constan
 const initialState = {
   title: '',
   menuItems: [],
-  dummies: []
+  dummies: ['dummy']
 };
 
 const rootReducer = (state = initialState, action) => {

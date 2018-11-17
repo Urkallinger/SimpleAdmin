@@ -10,10 +10,10 @@ const styles = () => ({
 });
 
 const mapStateToProps = state => {
-  return {};
+  return {dummies: state.root.dummies};
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = () => {
   return {};
 };
 
@@ -25,11 +25,19 @@ class List extends Component {
 
   render = () => {
     const {classes} = this.props;
-    return <div className={classes.debugBorder}>bla</div>;
+    const {dummies} = this.props;
+    return (
+      <div className={classes.debugBorder}>
+        {dummies.map((dummy, i) => (
+          <div key={i}>dummy</div>
+        ))}
+      </div>
+    );
   };
 }
 
 List.propTypes = {
+  dummies: PropTypes.array,
   classes: PropTypes.object.isRequired // material-ui
 };
 
