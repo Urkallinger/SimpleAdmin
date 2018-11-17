@@ -11,12 +11,10 @@ export const Routes = [
   new RouteData('Home', HomePage, '/', <HomeIcon />)
 ];
 
-const Routing = () => (
+export const Routing = () => (
   <Switch>
     {Routes.map(route => (
       <Route path={route.path} component={route.component} key={route.path} />
     ))}
   </Switch>
 );
-
-export default Routing;

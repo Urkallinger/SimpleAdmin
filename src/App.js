@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import MenuBar from './components/MenuBar';
 import {push} from 'connected-react-router';
-import Routing from './Routes';
+import {Routing} from './Routes';
 import {withStyles} from '@material-ui/core';
 
 const styles = () => ({
