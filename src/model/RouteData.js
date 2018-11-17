@@ -34,6 +34,4 @@ export class RouteData {
   set icon(icon) {
     this._icon = icon;
   }
-
-  hasIcon
 }
