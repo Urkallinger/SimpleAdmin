@@ -44,7 +44,7 @@ const styles = {
 };
 
 const mapStateToProps = state => {
-  return {title: state.root.title, menuItems: state.root.menuItems};
+  return {title: state.root.title, optMenuItems: state.root.optMenuItems};
 };
 
 class MenuBar extends Component {
@@ -71,7 +71,7 @@ class MenuBar extends Component {
     this.setState({showNavMenu: false});
   };
 
-  createMenuItem = data => {
+  createOptMenuItem = data => {
     const onClick = () => {
       data.onClick();
       this.onCloseOptMenu();
@@ -84,9 +84,9 @@ class MenuBar extends Component {
   };
 
   getOptMenu = () => {
-    const {menuItems} = this.props;
+    const {optMenuItems} = this.props;
 
-    if (!isUndefinedOrEmpty(menuItems)) {
+    if (!isUndefinedOrEmpty(optMenuItems)) {
       const {classes} = this.props;
       const {showOptMenu} = this.state;
       const origin = {vertical: 'top', horizontal: 'right'};
@@ -108,7 +108,7 @@ class MenuBar extends Component {
             open={showOptMenu}
             onClose={this.onCloseOptMenu}
           >
-            {menuItems.map(item => this.createMenuItem(item))}
+            {optMenuItems.map(item => this.createOptMenuItem(item))}
           </Menu>
         </React.Fragment>
       );
@@ -189,7 +189,7 @@ class MenuBar extends Component {
 
 MenuBar.propTypes = {
   title: PropTypes.string,
-  menuItems: PropTypes.array,
+  optMenuItems: PropTypes.array,
   classes: PropTypes.object
 };
 
