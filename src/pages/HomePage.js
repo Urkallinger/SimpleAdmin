@@ -1,10 +1,18 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {dummyAction, setTitle, setOptionMenuItems, clearDummies} from '../actions/Actions';
+import {
+  dummyAction,
+  setTitle,
+  setOptionMenuItems,
+  clearDummies,
+  showMessage
+} from '../actions/Actions';
 import {Button, withStyles} from '@material-ui/core';
 import FaceIcon from '@material-ui/icons/Face';
 import List from '../components/List';
+import {isUndefinedOrEmpty} from '../utils/JsUtils';
+import {Message} from '../model/Message';
 
 const styles = () => ({
   faceButton: {
@@ -20,8 +28,8 @@ const styles = () => ({
   }
 });
 
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = state => {
+  return {dummies: state.root.dummies};
 };
 
 const mapDispatchToProps = dispatch => {
@@ -29,7 +37,8 @@ const mapDispatchToProps = dispatch => {
     setTitle: title => dispatch(setTitle(title)),
     setOptionMenuItems: menuItems => dispatch(setOptionMenuItems(menuItems)),
     dummyAction: dummy => dispatch(dummyAction(dummy)),
-    clearDummies: () => dispatch(clearDummies())
+    clearDummies: () => dispatch(clearDummies()),
+    showMessage: message => dispatch(showMessage(message))
   };
 };
 
@@ -44,8 +53,12 @@ class HomePage extends Component {
   };
 
   onClearDummies = () => {
-    this.props.clearDummies();
-    console.log('dummies cleared');
+    if (isUndefinedOrEmpty(this.props.dummies)) {
+      this.props.showMessage(new Message('No dummies available to delete.'));
+    } else {
+      this.props.clearDummies();
+      console.log('dummies cleared');
+    }
   };
 
   onClick = () => {
@@ -71,6 +84,7 @@ HomePage.propTypes = {
   setTitle: PropTypes.func,
   setOptionMenuItems: PropTypes.func,
   clearDummies: PropTypes.func,
+  showMessage: PropTypes.func,
 
   classes: PropTypes.object.isRequired // material-ui
 };
