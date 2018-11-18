@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {withStyles} from '@material-ui/core';
+import {List as MuiList, withStyles, ListItem, ListItemText, Divider} from '@material-ui/core';
 
-const styles = () => ({
+const styles = theme => ({
   debugBorder: {
     border: '1px solid black'
+  },
+  root: {
+    width: '100%',
+    backgroundColor: theme.palette.background.paper
   }
 });
 
@@ -24,13 +28,20 @@ class List extends Component {
   }
 
   render = () => {
-    const {classes} = this.props;
-    const {dummies} = this.props;
+    const {classes, dummies} = this.props;
+
     return (
-      <div className={classes.debugBorder}>
-        {dummies.map((dummy, i) => (
-          <div key={i}>dummy</div>
-        ))}
+      <div className={classes.root}>
+        <MuiList component="nav">
+          {dummies.map((dummy, i) => (
+            <React.Fragment key={i}>
+              <ListItem key={i}>
+                <ListItemText primary={`dummy ${i}`} />
+              </ListItem>
+              <Divider />
+            </React.Fragment>
+          ))}
+        </MuiList>
       </div>
     );
   };
