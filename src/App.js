@@ -4,6 +4,7 @@ import MenuBar from './components/MenuBar';
 import {push} from 'connected-react-router';
 import {Routing} from './Routes';
 import {withStyles} from '@material-ui/core';
+import Snackbar from './components/Snackbar';
 
 const styles = () => ({
   content: {
@@ -24,6 +25,7 @@ class App extends Component {
         <div className={classes.content}>
           <Routing />
         </div>
+        <Snackbar />
       </div>
     );
   }
