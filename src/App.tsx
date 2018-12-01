@@ -3,16 +3,16 @@ import React, {Component} from 'react';
 import MenuBar from './components/MenuBar';
 import {push} from 'connected-react-router';
 import {Routing} from './Routes';
-import {withStyles} from '@material-ui/core';
+import {withStyles, createStyles, WithStyles} from '@material-ui/core';
 import Snackbar from './components/Snackbar';
 
-const styles = () => ({
+const styles = createStyles({
   content: {
     padding: 10
   }
 });
 
-class App extends Component {
+class App extends Component<Props> {
   goToHomePage = () => {
     window.store.dispatch(push('/home'));
   };
@@ -31,8 +31,6 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  classes: PropTypes.object
-};
+interface Props extends WithStyles<typeof styles> {}
 
 export default withStyles(styles)(App);

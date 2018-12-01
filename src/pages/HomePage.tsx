@@ -8,41 +8,43 @@ import {
   clearDummies,
   showMessage
 } from '../actions/Actions';
-import {Button, withStyles} from '@material-ui/core';
+import {Button, withStyles, WithStyles, createStyles, Theme} from '@material-ui/core';
 import FaceIcon from '@material-ui/icons/Face';
 import List from '../components/List';
 import {isUndefinedOrEmpty} from '../utils/JsUtils';
 import {Message} from '../model/Message';
+import { OptionMenuItem } from '../model/OptionMenuItem';
 
-const styles = () => ({
-  faceButton: {
-    position: 'fixed',
-    bottom: 10,
-    right: 10
-  },
-  output: {
-    width: '100%',
-    border: '1px solid black',
-    minHeight: '30px',
-    marginTop: 10
-  }
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    faceButton: {
+      position: 'fixed',
+      bottom: 10,
+      right: 10
+    },
+    output: {
+      width: '100%',
+      border: '1px solid black',
+      minHeight: '30px',
+      marginTop: 10
+    }
+  });
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {dummies: state.root.dummies};
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
-    setTitle: title => dispatch(setTitle(title)),
-    setOptionMenuItems: menuItems => dispatch(setOptionMenuItems(menuItems)),
-    dummyAction: dummy => dispatch(dummyAction(dummy)),
+    setTitle: (title: string) => dispatch(setTitle(title)),
+    setOptionMenuItems: (menuItems: Array<OptionMenuItem>) => dispatch(setOptionMenuItems(menuItems)),
+    dummyAction: (dummy: string) => dispatch(dummyAction(dummy)),
     clearDummies: () => dispatch(clearDummies()),
-    showMessage: message => dispatch(showMessage(message))
+    showMessage: (message: Message) => dispatch(showMessage(message))
   };
 };
 
-class HomePage extends Component {
+class HomePage extends Component<Props> {
   componentDidMount = () => {
     this.props.setTitle('Home');
     this.props.setOptionMenuItems([{label: 'clear dummies', onClick: this.onClearDummies}]);
@@ -78,16 +80,14 @@ class HomePage extends Component {
   };
 }
 
-HomePage.propTypes = {
-  dummies: PropTypes.array,
-  dummyAction: PropTypes.func,
-  setTitle: PropTypes.func,
-  setOptionMenuItems: PropTypes.func,
-  clearDummies: PropTypes.func,
-  showMessage: PropTypes.func,
-
-  classes: PropTypes.object.isRequired // material-ui
-};
+interface Props extends WithStyles<typeof styles> {
+  dummies: Array<string>,
+  dummyAction: (dummy: string) => void,
+  setTitle: (title: string) => void,
+  setOptionMenuItems: (menuItems: Array<OptionMenuItem>) => void,
+  clearDummies: () => void,
+  showMessage: (message: Message) => void,
+}
 
 export default connect(mapStateToProps,
                        mapDispatchToProps)(withStyles(styles)(HomePage));

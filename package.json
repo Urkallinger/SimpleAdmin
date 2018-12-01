@@ -19,6 +19,12 @@
     "redux": "^4.0.1"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.6",
+    "@types/history": "^4.7.2",
+    "@types/react-dom": "^16.0.11",
+    "@types/react-redux": "^6.0.10",
+    "@types/react-router": "^4.4.1",
+    "awesome-typescript-loader": "^5.2.1",
     "concurrently": "^4.0.1",
     "connected-react-router": "^5.0.1",
     "cross-env": "^5.2.0",
@@ -27,6 +33,9 @@
     "electron-devtools-installer": "^2.2.4",
     "jest": "^23.6.0",
     "react-scripts": "^2.1.1",
+    "source-map-loader": "^0.2.4",
+    "tslint": "^5.11.0",
+    "typescript": "^3.2.1",
     "version-bump-prompt": "^4.2.1",
     "wait-on": "^3.2.0"
   },

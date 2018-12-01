@@ -10,7 +10,8 @@ import {
   SwipeableDrawer,
   List,
   ListItem,
-  ListItemIcon
+  ListItemIcon,
+  WithStyles
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import MoreIcon from '@material-ui/icons/MoreVert';
@@ -20,6 +21,8 @@ import {connect} from 'react-redux';
 import {isUndefinedOrEmpty} from '../utils/JsUtils';
 import {Routes} from '../Routes';
 import {push} from 'connected-react-router';
+import {OptionMenuItem} from '../model/OptionMenuItem';
+import {PopoverOrigin} from '@material-ui/core/Popover';
 
 const styles = {
   root: {
@@ -43,12 +46,15 @@ const styles = {
   }
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {title: state.root.title, optMenuItems: state.root.optMenuItems};
 };
 
-class MenuBar extends Component {
-  constructor(props) {
+class MenuBar extends Component<Props, State> {
+  optAnchor: any;
+  navAnchor: any;
+
+  constructor(props: Props) {
     super(props);
     this.state = {showOptMenu: false, showNavMenu: false};
     this.optAnchor = null;
@@ -71,7 +77,7 @@ class MenuBar extends Component {
     this.setState({showNavMenu: false});
   };
 
-  createOptMenuItem = data => {
+  createOptMenuItem = (data: OptionMenuItem) => {
     const onClick = () => {
       data.onClick();
       this.onCloseOptMenu();
@@ -89,7 +95,7 @@ class MenuBar extends Component {
     if (!isUndefinedOrEmpty(optMenuItems)) {
       const {classes} = this.props;
       const {showOptMenu} = this.state;
-      const origin = {vertical: 'top', horizontal: 'right'};
+      const origin: PopoverOrigin = {vertical: 'top', horizontal: 'right'};
 
       return (
         <React.Fragment>
@@ -117,7 +123,7 @@ class MenuBar extends Component {
     }
   };
 
-  goTo = path => {
+  goTo = (path: string) => {
     return () => {
       window.store.dispatch(push(path));
     };
@@ -187,10 +193,14 @@ class MenuBar extends Component {
   }
 }
 
-MenuBar.propTypes = {
-  title: PropTypes.string,
-  optMenuItems: PropTypes.array,
-  classes: PropTypes.object
-};
+interface Props extends WithStyles<typeof styles> {
+  title: string;
+  optMenuItems: Array<OptionMenuItem>;
+}
+
+interface State {
+  showNavMenu: boolean;
+  showOptMenu: boolean;
+}
 
 export default connect(mapStateToProps)(withStyles(styles)(MenuBar));

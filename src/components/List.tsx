@@ -1,19 +1,29 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {List as MuiList, withStyles, ListItem, ListItemText, Divider} from '@material-ui/core';
+import {
+  List as MuiList,
+  withStyles,
+  ListItem,
+  ListItemText,
+  Divider,
+  Theme,
+  createStyles,
+  WithStyles
+} from '@material-ui/core';
 
-const styles = theme => ({
-  debugBorder: {
-    border: '1px solid black'
-  },
-  root: {
-    width: '100%',
-    backgroundColor: theme.palette.background.paper
-  }
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    debugBorder: {
+      border: '1px solid black'
+    },
+    root: {
+      width: '100%',
+      backgroundColor: theme.palette.background.paper
+    }
+  });
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {dummies: state.root.dummies};
 };
 
@@ -21,8 +31,8 @@ const mapDispatchToProps = () => {
   return {};
 };
 
-class List extends Component {
-  constructor(props) {
+class List extends Component<Props> {
+  constructor(props: Props) {
     super(props);
     this.state = {};
   }
@@ -47,10 +57,9 @@ class List extends Component {
   };
 }
 
-List.propTypes = {
-  dummies: PropTypes.array,
-  classes: PropTypes.object.isRequired // material-ui
-};
+interface Props extends WithStyles<typeof styles> {
+  dummies: Array<string>;
+}
 
 export default connect(mapStateToProps,
                        mapDispatchToProps)(withStyles(styles)(List));

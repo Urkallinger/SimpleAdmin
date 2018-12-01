@@ -1,5 +1,9 @@
 export class Message {
-  constructor(message, variant='') {
+
+  _message: string;
+  _variant: string
+
+  constructor(message: string, variant='') {
     this._message = message;
     this._variant = variant;
   }

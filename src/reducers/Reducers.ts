@@ -5,6 +5,7 @@ import {
   CLEAR_DUMMIES,
   SHOW_MESSAGE
 } from '../constants/ActionTypes';
+import { Action } from '../actions/Actions';
 
 const initialState = {
   title: '',
@@ -13,7 +14,7 @@ const initialState = {
   message: undefined
 };
 
-const rootReducer = (state = initialState, action) => {
+const rootReducer = (state = initialState, action: Action) => {
   switch (action.type) {
   case SET_TITLE:
     return {...state, title: action.payload};
