@@ -17,7 +17,8 @@ import {
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import PropTypes, { any } from 'prop-types';
+import HomeIcon from '@material-ui/icons/Home';
+import PropTypes, {any} from 'prop-types';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {isUndefinedOrEmpty} from '../utils/JsUtils';
@@ -41,18 +42,20 @@ const styles = (theme: Theme) =>
     moreButton: {
       marginRight: -15
     },
-    list: {
-      width: 250
-    },
     navHeader: {
       height: 160
+    },
+    navHeaderIcon: {
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'green',
+      fill: 'yellow'
     }
   });
 
 const mapStateToProps = (state: any) => {
   return {title: state.root.title, optMenuItems: state.root.optMenuItems};
 };
-
 
 class MenuBar extends Component<Props, State> {
   optAnchor: any;
@@ -145,25 +148,19 @@ class MenuBar extends Component<Props, State> {
         >
           <div onClick={this.onCloseNavMenu} onKeyDown={this.onCloseNavMenu}>
             <div className={classes.navHeader}>
-              <img
-                // style={{width: 250}}
-                src={require('../resources/kalling-250x167.jpg')}
-                alt="Kalling"
-              />
+              <HomeIcon className={classes.navHeaderIcon} />
             </div>
-            <div className={classes.list}>
-              <List>
-                {Routes.map(route => (
-                  <ListItem button key={route.label} onClick={this.goTo(route.path)}>
-                    <ListItemIcon>{route.icon}</ListItemIcon>
-                    <ListItemText
-                      primary={<Typography variant="h6">{route.label}</Typography>}
-                      disableTypography={true}
-                    />
-                  </ListItem>
-                ))}
-              </List>
-            </div>
+            <List>
+              {Routes.map(route => (
+                <ListItem button key={route.label} onClick={this.goTo(route.path)}>
+                  <ListItemIcon>{route.icon}</ListItemIcon>
+                  <ListItemText
+                    primary={<Typography variant="h6">{route.label}</Typography>}
+                    disableTypography={true}
+                  />
+                </ListItem>
+              ))}
+            </List>
           </div>
         </SwipeableDrawer>
       );
@@ -174,7 +171,6 @@ class MenuBar extends Component<Props, State> {
 
   render() {
     const {classes} = this.props;
-
     return (
       <AppBar position="static">
         <Toolbar>
