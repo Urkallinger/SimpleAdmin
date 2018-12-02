@@ -11,11 +11,13 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  WithStyles
+  WithStyles,
+  Theme,
+  createStyles
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import PropTypes from 'prop-types';
+import PropTypes, { any } from 'prop-types';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {isUndefinedOrEmpty} from '../utils/JsUtils';
@@ -24,31 +26,33 @@ import {push} from 'connected-react-router';
 import {OptionMenuItem} from '../model/OptionMenuItem';
 import {PopoverOrigin} from '@material-ui/core/Popover';
 
-const styles = {
-  root: {
-    flexGrow: 1
-  },
-  grow: {
-    flexGrow: 1
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20
-  },
-  moreButton: {
-    marginRight: -15
-  },
-  list: {
-    width: 250
-  },
-  navHeader: {
-    height: 160
-  }
-};
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1
+    },
+    grow: {
+      flexGrow: 1
+    },
+    menuButton: {
+      marginLeft: -12,
+      marginRight: 20
+    },
+    moreButton: {
+      marginRight: -15
+    },
+    list: {
+      width: 250
+    },
+    navHeader: {
+      height: 160
+    }
+  });
 
 const mapStateToProps = (state: any) => {
   return {title: state.root.title, optMenuItems: state.root.optMenuItems};
 };
+
 
 class MenuBar extends Component<Props, State> {
   optAnchor: any;
