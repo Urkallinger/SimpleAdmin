@@ -8,12 +8,13 @@ import {
   clearDummies,
   showMessage
 } from '../actions/Actions';
-import {Button, withStyles, WithStyles, createStyles, Theme} from '@material-ui/core';
+import {withStyles, WithStyles, createStyles, Theme} from '@material-ui/core';
 import FaceIcon from '@material-ui/icons/Face';
 import List from '../components/List';
 import {isUndefinedOrEmpty} from '../utils/JsUtils';
 import {Message} from '../model/Message';
-import { OptionMenuItem } from '../model/OptionMenuItem';
+import {OptionMenuItem} from '../model/OptionMenuItem';
+import Fab from '@material-ui/core/Fab';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -37,7 +38,8 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => {
   return {
     setTitle: (title: string) => dispatch(setTitle(title)),
-    setOptionMenuItems: (menuItems: Array<OptionMenuItem>) => dispatch(setOptionMenuItems(menuItems)),
+    setOptionMenuItems: (menuItems: Array<OptionMenuItem>) =>
+      dispatch(setOptionMenuItems(menuItems)),
     dummyAction: (dummy: string) => dispatch(dummyAction(dummy)),
     clearDummies: () => dispatch(clearDummies()),
     showMessage: (message: Message) => dispatch(showMessage(message))
@@ -72,21 +74,21 @@ class HomePage extends Component<Props> {
     return (
       <div>
         <List />
-        <Button onClick={this.onClick} variant="fab" color="primary" className={classes.faceButton}>
+        <Fab onClick={this.onClick} color="primary" className={classes.faceButton}>
           <FaceIcon />
-        </Button>
+        </Fab>
       </div>
     );
   };
 }
 
 interface Props extends WithStyles<typeof styles> {
-  dummies: Array<string>,
-  dummyAction: (dummy: string) => void,
-  setTitle: (title: string) => void,
-  setOptionMenuItems: (menuItems: Array<OptionMenuItem>) => void,
-  clearDummies: () => void,
-  showMessage: (message: Message) => void,
+  dummies: Array<string>;
+  dummyAction: (dummy: string) => void;
+  setTitle: (title: string) => void;
+  setOptionMenuItems: (menuItems: Array<OptionMenuItem>) => void;
+  clearDummies: () => void;
+  showMessage: (message: Message) => void;
 }
 
 export default connect(mapStateToProps,
