@@ -46,7 +46,7 @@ class List extends Component<Props> {
           {dummies.map((dummy, i) => (
             <React.Fragment key={i}>
               <ListItem key={i}>
-                <ListItemText primary={`dummy ${i}`} />
+                <ListItemText primary={`${dummy}`} />
               </ListItem>
               <Divider />
             </React.Fragment>

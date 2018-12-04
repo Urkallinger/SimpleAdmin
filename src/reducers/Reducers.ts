@@ -14,7 +14,7 @@ const initialState = {
   message: undefined
 };
 
-const rootReducer = (state = initialState, action: Action) => {
+const RootReducer = (state = initialState, action: Action) => {
   switch (action.type) {
   case SET_TITLE:
     return {...state, title: action.payload};
@@ -30,4 +30,4 @@ const rootReducer = (state = initialState, action: Action) => {
     return state;
   }
 };
-export default rootReducer;
+export default RootReducer;

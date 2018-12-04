@@ -4,7 +4,7 @@ import {createBrowserHistory, History} from 'history';
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
 import {applyMiddleware, compose, createStore, combineReducers} from 'redux';
-import rootReducer from './reducers/Reducers';
+import RootReducer from './reducers/Reducers';
 import {SimpleAdminTheme} from './Theme';
 import App from './App';
 
@@ -18,7 +18,7 @@ const history = createBrowserHistory();
 
 export const createReducers = (history: History) => {
   return combineReducers({
-    root: rootReducer,
+    root: RootReducer,
     router: connectRouter(history)
   });
 };

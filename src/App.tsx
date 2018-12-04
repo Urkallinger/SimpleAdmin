@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import { createStyles, withStyles, WithStyles } from '@material-ui/core';
+import { push } from 'connected-react-router';
+import React, { Component } from 'react';
 import MenuBar from './components/MenuBar';
-import {push} from 'connected-react-router';
-import {Routing} from './Routes';
-import {withStyles, createStyles, WithStyles} from '@material-ui/core';
 import Snackbar from './components/Snackbar';
+import { Routing } from './Routes';
+import { WsClient } from './ws/WsClient';
 
 const styles = createStyles({
   content: {
@@ -13,6 +13,10 @@ const styles = createStyles({
 });
 
 class App extends Component<Props> {
+  constructor(props: Props) {
+    super(props);
+    new WsClient();
+  }
   goToHomePage = () => {
     window.store.dispatch(push('/home'));
   };
