@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {
-  dummyAction,
+  sendMessage,
+  clearMessages,
   setTitle,
   setOptionMenuItems,
-  clearDummies,
   showMessage
 } from '../actions/Actions';
 import {withStyles, WithStyles, createStyles, Theme} from '@material-ui/core';
@@ -32,7 +32,7 @@ const styles = (theme: Theme) =>
   });
 
 const mapStateToProps = (state: any) => {
-  return {dummies: state.root.dummies};
+  return {messages: state.ws.messages};
 };
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -40,8 +40,8 @@ const mapDispatchToProps = (dispatch: any) => {
     setTitle: (title: string) => dispatch(setTitle(title)),
     setOptionMenuItems: (menuItems: Array<OptionMenuItem>) =>
       dispatch(setOptionMenuItems(menuItems)),
-    dummyAction: (dummy: string) => dispatch(dummyAction(dummy)),
-    clearDummies: () => dispatch(clearDummies()),
+    sendMessage: (message: string) => dispatch(sendMessage(message)),
+    clearMessages: () => dispatch(clearMessages()),
     showMessage: (message: Message) => dispatch(showMessage(message))
   };
 };
@@ -49,24 +49,24 @@ const mapDispatchToProps = (dispatch: any) => {
 class HomePage extends Component<Props> {
   componentDidMount = () => {
     this.props.setTitle('Home');
-    this.props.setOptionMenuItems([{label: 'clear dummies', onClick: this.onClearDummies}]);
+    this.props.setOptionMenuItems([{label: 'clear messages', onClick: this.onClearMessages}]);
   };
 
   componentWillUnmount = () => {
     this.props.setOptionMenuItems([]);
   };
 
-  onClearDummies = () => {
-    if (isUndefinedOrEmpty(this.props.dummies)) {
-      this.props.showMessage(new Message('No dummies available to delete.'));
+  onClearMessages = () => {
+    if (isUndefinedOrEmpty(this.props.messages)) {
+      this.props.showMessage(new Message('No messages available to delete.'));
     } else {
-      this.props.clearDummies();
-      console.log('dummies cleared');
+      this.props.clearMessages();
+      console.log('Messages cleared');
     }
   };
 
   onClick = () => {
-    this.props.dummyAction('superdummy');
+    this.props.sendMessage('Message from HomePage');
   };
 
   render = () => {
@@ -83,11 +83,11 @@ class HomePage extends Component<Props> {
 }
 
 interface Props extends WithStyles<typeof styles> {
-  dummies: Array<string>;
-  dummyAction: (dummy: string) => void;
+  messages: Array<string>;
+  sendMessage: (message: string) => void;
+  clearMessages: () => void;
   setTitle: (title: string) => void;
   setOptionMenuItems: (menuItems: Array<OptionMenuItem>) => void;
-  clearDummies: () => void;
   showMessage: (message: Message) => void;
 }
 

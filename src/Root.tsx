@@ -3,13 +3,16 @@ import {ConnectedRouter, connectRouter, routerMiddleware} from 'connected-react-
 import {createBrowserHistory, History} from 'history';
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
-import {applyMiddleware, compose, createStore, combineReducers} from 'redux';
-import RootReducer from './reducers/Reducers';
-import {SimpleAdminTheme} from './Theme';
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import App from './App';
+import RootReducer from './reducers/RootReducer';
+import WsReducer from './reducers/WsReducer';
+import {SimpleAdminTheme} from './Theme';
 
 declare global {
-  interface Window { store: any; }
+  interface Window {
+    store: any;
+  }
 }
 
 window.store = window.store || {};
@@ -19,6 +22,7 @@ const history = createBrowserHistory();
 export const createReducers = (history: History) => {
   return combineReducers({
     root: RootReducer,
+    ws: WsReducer,
     router: connectRouter(history)
   });
 };

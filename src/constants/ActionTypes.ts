@@ -3,5 +3,7 @@ export const SET_OPTION_MENU_ITEMS = 'SET_OPTION_MENU_ITEMS';
 
 export const SHOW_MESSAGE = 'SHOW_MESSAGE';
 
-export const DUMMY_ACTION = 'DUMMY_ACTION';
-export const CLEAR_DUMMIES = 'CLEAR_DUMMIES';
+// Socket.IO
+export const SEND_MESSAGE = 'SEND_MESSAGE';
+export const CLEAR_MESSAGES = 'CLEAR_MESSAGES';
+export const APPEND_MESSAGE = 'APPEND_MESSAGE';

@@ -24,7 +24,7 @@ const styles = (theme: Theme) =>
   });
 
 const mapStateToProps = (state: any) => {
-  return {dummies: state.root.dummies};
+  return {messages: state.ws.messages};
 };
 
 const mapDispatchToProps = () => {
@@ -38,15 +38,15 @@ class List extends Component<Props> {
   }
 
   render = () => {
-    const {classes, dummies} = this.props;
+    const {classes, messages} = this.props;
 
     return (
       <div className={classes.root}>
         <MuiList component="nav">
-          {dummies.map((dummy, i) => (
+          {messages.map((message, i) => (
             <React.Fragment key={i}>
               <ListItem key={i}>
-                <ListItemText primary={`${dummy}`} />
+                <ListItemText primary={`${message}`} />
               </ListItem>
               <Divider />
             </React.Fragment>
@@ -58,7 +58,7 @@ class List extends Component<Props> {
 }
 
 interface Props extends WithStyles<typeof styles> {
-  dummies: Array<string>;
+  messages: Array<string>;
 }
 
 export default connect(mapStateToProps,

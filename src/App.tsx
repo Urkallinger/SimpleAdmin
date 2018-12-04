@@ -1,10 +1,9 @@
-import { createStyles, withStyles, WithStyles } from '@material-ui/core';
-import { push } from 'connected-react-router';
-import React, { Component } from 'react';
+import {createStyles, withStyles, WithStyles} from '@material-ui/core';
+import {push} from 'connected-react-router';
+import React, {Component} from 'react';
 import MenuBar from './components/MenuBar';
 import Snackbar from './components/Snackbar';
-import { Routing } from './Routes';
-import { WsClient } from './ws/WsClient';
+import {Routing} from './Routes';
 
 const styles = createStyles({
   content: {
@@ -15,7 +14,6 @@ const styles = createStyles({
 class App extends Component<Props> {
   constructor(props: Props) {
     super(props);
-    new WsClient();
   }
   goToHomePage = () => {
     window.store.dispatch(push('/home'));
