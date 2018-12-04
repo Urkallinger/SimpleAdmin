@@ -6,12 +6,20 @@ import {
   SHOW_MESSAGE
 } from '../constants/ActionTypes';
 import { Action } from '../actions/Actions';
+import { OptionMenuItem } from '../model/OptionMenuItem';
 
-const initialState = {
+interface InitState {
+  title: string;
+  optMenuItems: Array<OptionMenuItem>;
+  dummies: Array<string>;
+  message: string;
+}
+
+const initialState: InitState = {
   title: '',
   optMenuItems: [],
-  dummies: ['dummy'],
-  message: undefined
+  dummies: [],
+  message: ''
 };
 
 const RootReducer = (state = initialState, action: Action) => {
