@@ -4,11 +4,12 @@
 
 	// List of extensions which should be recommended for users of this workspace.
 	"recommendations": [
-        "msjsdiag.debugger-for-chrome",
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode",
-        "robertohuertasm.vscode-icons",
-        "rebornix.project-snippets"
+		"msjsdiag.debugger-for-chrome",
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode",
+		"robertohuertasm.vscode-icons",
+		"rebornix.project-snippets",
+		"eg2.tslint"
 	],
 	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
 	"unwantedRecommendations": [
